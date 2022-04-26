@@ -19,7 +19,7 @@ public class OzonTests {
 
     @DisplayName("проверка поиска продукции Nokia в магазине ozon")
     @Test
-    void ozonSearchTest() {
+    void ozonSearchNokiaTest() {
         Selenide.open("https://www.ozon.ru");
         $("[name=text]").setValue("Nokia");
         $("[type=submit]").click();
