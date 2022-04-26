@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class OzonTest {
+public class OzonTests {
 
     @BeforeAll
     static void setUp() {
         Configuration.browserSize = "1920x1080";
     }
 
-    @DisplayName("проверка поиска продукции nokia в магазине ozon")
+    @DisplayName("проверка поиска продукции Nokia в магазине ozon")
     @Test
     void ozonSearchTest() {
         Selenide.open("https://www.ozon.ru");
@@ -25,6 +25,16 @@ public class OzonTest {
         $("[type=submit]").click();
         $$(".ri5")
                 .find(Condition.text("Nokia"))
+                .shouldBe(Condition.visible);
+    }
+    @DisplayName("проверка поиска продукции Xiaomi в магазине ozon")
+    @Test
+    void ozonSearchXiaomiTest() {
+        Selenide.open("https://www.ozon.ru");
+        $("[name=text]").setValue("Xiaomi");
+        $("[type=submit]").click();
+        $$(".ri5")
+                .find(Condition.text("Xiaomi"))
                 .shouldBe(Condition.visible);
     }
 }
