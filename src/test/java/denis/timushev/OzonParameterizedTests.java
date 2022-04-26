@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -56,13 +55,13 @@ public class OzonParameterizedTests {
     static Stream<Arguments> ozonMethodSourceTest() {
         return Stream.of(
                 Arguments.of("Nokia", "105 SS"),
-                Arguments.of("Xiaomi", "Xiaomi, Mijia Stainless Steel Nail Clippers (MJZJD002QW)")
+                Arguments.of("Xiaomi", "Mijia Stainless Steel Nail Clippers (MJZJD002QW)")
         );
     }
 
     @MethodSource("ozonMethodSourceTest")
     @ParameterizedTest(name = "проверка поиска продукции с MethodSource")
-    void ozonMethodSourceTest(String testData, String result) {
+    void ozonMethodSourceTest(String testData) {
         Selenide.open("https://www.ozon.ru");
         $("[name=text]").setValue(testData);
         $("[type=submit]").click();
