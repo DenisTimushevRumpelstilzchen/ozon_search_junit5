@@ -5,8 +5,13 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -46,5 +51,18 @@ public class OzonParameterizedTests {
         $$(".ri5")
                 .find(Condition.text(expectedResult))
                 .shouldBe(Condition.visible);
+    }
+
+    static Stream<Arguments> ozonMethodSourceTest() {
+        return Stream.of(
+                Arguments.of("Nokia", List.of(1,2)),
+                Arguments.of("Xiaomi", List.of(3,4))
+        );
+    }
+
+    @MethodSource("ozonMethodSourceTest")
+    @ParameterizedTest(name = "проверка поиска продукции")
+    void ozonMethodSourceTest(String first, List<Integer> second) {
+        System.out.println(first + " and list: " + second);
     }
 }
