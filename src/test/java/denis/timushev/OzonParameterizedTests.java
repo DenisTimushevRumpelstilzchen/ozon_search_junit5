@@ -62,7 +62,7 @@ public class OzonParameterizedTests {
 
     @MethodSource("ozonMethodSourceTest")
     @ParameterizedTest(name = "проверка поиска продукции")
-    void ozonMethodSourceTest(String first, List<Integer> second) {
+    void ozonMethodSourceTest(String testData, String result) {
         Selenide.open("https://www.ozon.ru");
         $("[name=text]").setValue(testData);
         $("[type=submit]").click();
