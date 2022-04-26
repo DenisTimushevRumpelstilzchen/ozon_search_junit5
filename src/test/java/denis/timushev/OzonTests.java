@@ -27,6 +27,7 @@ public class OzonTests {
                 .find(Condition.text("Nokia"))
                 .shouldBe(Condition.visible);
     }
+
     @DisplayName("проверка поиска продукции Xiaomi в магазине ozon")
     @Test
     void ozonSearchXiaomiTest() {
