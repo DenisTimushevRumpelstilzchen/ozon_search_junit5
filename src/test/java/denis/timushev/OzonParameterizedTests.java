@@ -63,6 +63,11 @@ public class OzonParameterizedTests {
     @MethodSource("ozonMethodSourceTest")
     @ParameterizedTest(name = "проверка поиска продукции")
     void ozonMethodSourceTest(String first, List<Integer> second) {
-        System.out.println(first + " and list: " + second);
+        Selenide.open("https://www.ozon.ru");
+        $("[name=text]").setValue(testData);
+        $("[type=submit]").click();
+        $$(".ri5")
+                .find(Condition.text(testData))
+                .shouldBe(Condition.visible);
     }
 }
