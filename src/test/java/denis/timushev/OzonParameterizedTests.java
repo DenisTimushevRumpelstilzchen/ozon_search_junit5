@@ -55,8 +55,8 @@ public class OzonParameterizedTests {
 
     static Stream<Arguments> ozonMethodSourceTest() {
         return Stream.of(
-                Arguments.of("Nokia"),
-                Arguments.of("Xiaomi")
+                Arguments.of("Nokia", "105 SS"),
+                Arguments.of("Xiaomi", "Xiaomi, Mijia Stainless Steel Nail Clippers (MJZJD002QW)")
         );
     }
 
