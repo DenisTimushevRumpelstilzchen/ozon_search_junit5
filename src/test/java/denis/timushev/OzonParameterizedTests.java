@@ -31,7 +31,7 @@ public class OzonParameterizedTests {
     }
     @CsvSource(value = {
             "Nokia, 105 SS",
-            "Xiaomi, Mijia Stainless Steel Nail Clippers (MJZJD002QW)"
+            "Xiaomi, Xiaomi, Mijia Stainless Steel Nail Clippers (MJZJD002QW)"
     })
     @ParameterizedTest(name = "проверка поиска продукции {0} в магазине ozon, ожидаем {1}")
     void ozonSearchComplexTest(String testData, String expectedResult) {
