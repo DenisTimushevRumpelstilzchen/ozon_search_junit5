@@ -4,8 +4,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -17,26 +17,17 @@ public class OzonParameterizedTests {
         Configuration.browserSize = "1920x1080";
     }
 
-    @DisplayName("проверка поиска продукции Nokia в магазине ozon")
-    @Test
-    void ozonSearchTest() {
+    @ValueSource(strings = {
+            "Nokia",
+            "Xiaomi"
+    })
+    @ParameterizedTest(name = "проверка поиска продукции {0} в магазине ozon")
+    void ozonSearchTest(String testData) {
         Selenide.open("https://www.ozon.ru");
-        $("[name=text]").setValue("Nokia");
+        $("[name=text]").setValue(testData);
         $("[type=submit]").click();
         $$(".ri5")
-                .find(Condition.text("Nokia"))
-                .shouldBe(Condition.visible);
-    }
-
-    @DisplayName("проверка поиска продукции Xiaomi в магазине ozon")
-    @Test
-    void ozonSearchXiaomiTest() {
-        Selenide.open("https://www.ozon.ru");
-        $("[name=text]").setValue("Xiaomi");
-        $("[type=submit]").click();
-        $$(".ri5")
-                .find(Condition.text("Xiaomi"))
+                .find(Condition.text(testData))
                 .shouldBe(Condition.visible);
     }
 }
-
