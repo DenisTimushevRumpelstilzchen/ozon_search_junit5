@@ -54,19 +54,19 @@ public class OzonParameterizedTests {
 
     static Stream<Arguments> ozonMethodSourceTest() {
         return Stream.of(
-                Arguments.of("Nokia", "105 SS"),
-                Arguments.of("Xiaomi", "Mijia Stainless Steel Nail Clippers (MJZJD002QW)")
+                Arguments.of("Nokia", "nokia"),
+                Arguments.of("Xiaomi", "xiaomi")
         );
     }
 
     @MethodSource("ozonMethodSourceTest")
     @ParameterizedTest(name = "проверка поиска продукции с MethodSource")
-    void ozonMethodSourceTest(String testData) {
+    void ozonMethodSourceTest(String testData, String expectedResult) {
         Selenide.open("https://www.ozon.ru");
         $("[name=text]").setValue(testData);
         $("[type=submit]").click();
-        $$(".ri5")
-                .find(Condition.text(testData))
+        $$(".tv")
+                .find(Condition.text(expectedResult))
                 .shouldBe(Condition.visible);
     }
 }
