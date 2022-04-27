@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -33,7 +34,7 @@ public class OzonParameterizedTests {
         $("[name=text]").setValue(testData);
         $("[type=submit]").click();
         $$(".ri5")
-                .find(Condition.text(testData))
+                .find(text(testData))
                 .shouldBe(Condition.visible);
     }
 
@@ -48,7 +49,7 @@ public class OzonParameterizedTests {
         $("[name=text]").setValue(testData);
         $("[type=submit]").click();
         $$(".ri5")
-                .find(Condition.text(expectedResult))
+                .find(text(expectedResult))
                 .shouldBe(Condition.visible);
     }
 
@@ -65,8 +66,6 @@ public class OzonParameterizedTests {
         Selenide.open("https://www.ozon.ru");
         $("[name=text]").setValue(testData);
         $("[type=submit]").click();
-        $$(".ri5")
-                .find(Condition.text(expectedResult))
-                .shouldBe(Condition.visible);
+        $(".ri5").shouldHave(text(expectedResult));
     }
 }
