@@ -65,7 +65,7 @@ public class OzonParameterizedTests {
         Selenide.open("https://www.ozon.ru");
         $("[name=text]").setValue(testData);
         $("[type=submit]").click();
-        $$(".tv")
+        $$(".ri5")
                 .find(Condition.text(expectedResult))
                 .shouldBe(Condition.visible);
     }
